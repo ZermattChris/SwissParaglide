@@ -17,7 +17,7 @@
         init_scroll_navigate();
         init_wow();
         init_parallax();
-        initPageSliders();
+        // initPageSliders();
         
         $(window).trigger("scroll");
         $(window).trigger("resize");        
@@ -676,253 +676,253 @@
  Sliders
  --------------------------------------------- */
 
-function initPageSliders(){
-    (function($){
-        "use strict";
+// function initPageSliders(){
+//     (function($){
+//         "use strict";
         
-        function owl_keynav(el){
-            el.attr({
-                "role": "region",
-                "aria-roledescription": "carousel"
-            });         
-            el.find(".owl-prev, .owl-next").attr({
-                "role": "button",
-                "tabindex": "0"
-            });
-            if (el.hasClass("autoplay")){
-                el.prepend("<button class='owl-pause-button visually-hidden sr-only'>Stop Sliding</button>");
-                el.on("click", ".owl-pause-button", function(){
-                    if ($(this).hasClass("owl-pause-button-paused")) {
-                        $(this).removeClass("owl-pause-button-paused");
-                        $(this).html("Stop Sliding");
-                        var this_owl = el.data("owlCarousel");
-                        this_owl.play();                       
-                    } else {                    
-                        $(this).addClass("owl-pause-button-paused");
-                        $(this).html("Start Sliding");
-                        var this_owl = el.data("owlCarousel");
-                        this_owl.stop();
-                    }     
-                });            
-            }  
-            el.prepend(el.find(".owl-controls"));     
-            el.on("click", ".owl-page, .owl-prev, .owl-next", function(e){
-                el.find(".owl-pause-button").addClass("owl-pause-button-paused");
-                el.find(".owl-pause-button").html("Start Sliding");
-                var this_owl = el.data("owlCarousel");
-                this_owl.stop();
-            });   
-            el.on("keydown", ".owl-page, .owl-prev, .owl-next", function(e){
-                if (e.keyCode == 13 || e.keyCode == 32) {
-                    el.find(".owl-pause-button").addClass("owl-pause-button-paused");
-                    el.find(".owl-pause-button").html("Start Sliding");
-                    var this_owl = el.data("owlCarousel");
-                    this_owl.stop();
-                }
-            });          
-            el.on("keydown", ".owl-prev", function(e){
-                if (e.keyCode == 13 || e.keyCode == 32) {
-                    var this_owl = el.data("owlCarousel");
-                    this_owl.prev();
-                    return false;                    
-                }
-            });
-            el.on("keydown", ".owl-next", function(e){
-                if (e.keyCode == 13 || e.keyCode == 32) {
-                    var this_owl = el.data("owlCarousel");
-                    this_owl.next();
-                    return false;                   
-                }
-            });                      
-        }
+//         function owl_keynav(el){
+//             el.attr({
+//                 "role": "region",
+//                 "aria-roledescription": "carousel"
+//             });         
+//             el.find(".owl-prev, .owl-next").attr({
+//                 "role": "button",
+//                 "tabindex": "0"
+//             });
+//             if (el.hasClass("autoplay")){
+//                 el.prepend("<button class='owl-pause-button visually-hidden sr-only'>Stop Sliding</button>");
+//                 el.on("click", ".owl-pause-button", function(){
+//                     if ($(this).hasClass("owl-pause-button-paused")) {
+//                         $(this).removeClass("owl-pause-button-paused");
+//                         $(this).html("Stop Sliding");
+//                         var this_owl = el.data("owlCarousel");
+//                         this_owl.play();                       
+//                     } else {                    
+//                         $(this).addClass("owl-pause-button-paused");
+//                         $(this).html("Start Sliding");
+//                         var this_owl = el.data("owlCarousel");
+//                         this_owl.stop();
+//                     }     
+//                 });            
+//             }  
+//             el.prepend(el.find(".owl-controls"));     
+//             el.on("click", ".owl-page, .owl-prev, .owl-next", function(e){
+//                 el.find(".owl-pause-button").addClass("owl-pause-button-paused");
+//                 el.find(".owl-pause-button").html("Start Sliding");
+//                 var this_owl = el.data("owlCarousel");
+//                 this_owl.stop();
+//             });   
+//             el.on("keydown", ".owl-page, .owl-prev, .owl-next", function(e){
+//                 if (e.keyCode == 13 || e.keyCode == 32) {
+//                     el.find(".owl-pause-button").addClass("owl-pause-button-paused");
+//                     el.find(".owl-pause-button").html("Start Sliding");
+//                     var this_owl = el.data("owlCarousel");
+//                     this_owl.stop();
+//                 }
+//             });          
+//             el.on("keydown", ".owl-prev", function(e){
+//                 if (e.keyCode == 13 || e.keyCode == 32) {
+//                     var this_owl = el.data("owlCarousel");
+//                     this_owl.prev();
+//                     return false;                    
+//                 }
+//             });
+//             el.on("keydown", ".owl-next", function(e){
+//                 if (e.keyCode == 13 || e.keyCode == 32) {
+//                     var this_owl = el.data("owlCarousel");
+//                     this_owl.next();
+//                     return false;                   
+//                 }
+//             });                      
+//         }
         
-        function owl_update(el){       
-            el.find(".owl-item").attr({
-                "aria-hidden": "true"
-            });
-            el.find(".owl-item.active").removeAttr("aria-hidden");
-            el.find(".owl-item a, .owl-item button, .owl-item input").attr({
-                "tabindex": "-1"
-            });
-            el.find(".owl-item.active a, .owl-item.active button, .owl-item.active input").attr({
-                "tabindex": "0"
-            });
-        }
+//         function owl_update(el){       
+//             el.find(".owl-item").attr({
+//                 "aria-hidden": "true"
+//             });
+//             el.find(".owl-item.active").removeAttr("aria-hidden");
+//             el.find(".owl-item a, .owl-item button, .owl-item input").attr({
+//                 "tabindex": "-1"
+//             });
+//             el.find(".owl-item.active a, .owl-item.active button, .owl-item.active input").attr({
+//                 "tabindex": "0"
+//             });
+//         }
         
-        // Fullwidth slider
-        $(".fullwidth-slider").owlCarousel({
-            slideSpeed: 350,
-            singleItem: true,
-            autoHeight: true,
-            navigation: true,
-            lazyLoad: true,
-            addClassActive : true,
-            navigationText: ['<span class="sr-only">Previous Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.005,28.500 L27.000,54.494 L24.000,56.994 L0.005,28.500 L24.000,0.006 L27.000,2.506 L5.005,28.500 Z"/></svg>', '<span class="sr-only">Next Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.995,28.500 L-0.000,54.494 L3.000,56.994 L26.995,28.500 L3.000,0.006 L-0.000,2.506 L21.995,28.500 Z"/></svg>'],
-            afterInit: owl_keynav,
-            afterAction: owl_update
-        });
+//         // Fullwidth slider
+//         $(".fullwidth-slider").owlCarousel({
+//             slideSpeed: 350,
+//             singleItem: true,
+//             autoHeight: true,
+//             navigation: true,
+//             lazyLoad: true,
+//             addClassActive : true,
+//             navigationText: ['<span class="sr-only">Previous Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.005,28.500 L27.000,54.494 L24.000,56.994 L0.005,28.500 L24.000,0.006 L27.000,2.506 L5.005,28.500 Z"/></svg>', '<span class="sr-only">Next Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.995,28.500 L-0.000,54.494 L3.000,56.994 L26.995,28.500 L3.000,0.006 L-0.000,2.506 L21.995,28.500 Z"/></svg>'],
+//             afterInit: owl_keynav,
+//             afterAction: owl_update
+//         });
         
-        // Fullwidth slider fade
-        $(".fullwidth-slider-fade").owlCarousel({
-            transitionStyle: "fade",
-            slideSpeed: 350,
-            singleItem: true,
-            autoHeight: true,
-            navigation: true,
-            lazyLoad: true,
-            addClassActive : true,
-            navigationText: ['<span class="sr-only">Previous Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.005,28.500 L27.000,54.494 L24.000,56.994 L0.005,28.500 L24.000,0.006 L27.000,2.506 L5.005,28.500 Z"/></svg>', '<span class="sr-only">Next Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.995,28.500 L-0.000,54.494 L3.000,56.994 L26.995,28.500 L3.000,0.006 L-0.000,2.506 L21.995,28.500 Z"/></svg>'],
-            afterInit: owl_keynav,
-            afterAction: owl_update
-        });
+//         // Fullwidth slider fade
+//         $(".fullwidth-slider-fade").owlCarousel({
+//             transitionStyle: "fade",
+//             slideSpeed: 350,
+//             singleItem: true,
+//             autoHeight: true,
+//             navigation: true,
+//             lazyLoad: true,
+//             addClassActive : true,
+//             navigationText: ['<span class="sr-only">Previous Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.005,28.500 L27.000,54.494 L24.000,56.994 L0.005,28.500 L24.000,0.006 L27.000,2.506 L5.005,28.500 Z"/></svg>', '<span class="sr-only">Next Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.995,28.500 L-0.000,54.494 L3.000,56.994 L26.995,28.500 L3.000,0.006 L-0.000,2.506 L21.995,28.500 Z"/></svg>'],
+//             afterInit: owl_keynav,
+//             afterAction: owl_update
+//         });
         
-        // Fullwidth slider fadezoom
-        $(".fullwidth-slider-fadezoom").owlCarousel({
-            transitionStyle: "fadeUp",
-            slideSpeed: 350,
-            singleItem: true,
-            autoHeight: true,
-            navigation: true,
-            lazyLoad: true,
-            addClassActive : true,
-            navigationText: ['<span class="sr-only">Previous Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.005,28.500 L27.000,54.494 L24.000,56.994 L0.005,28.500 L24.000,0.006 L27.000,2.506 L5.005,28.500 Z"/></svg>', '<span class="sr-only">Next Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.995,28.500 L-0.000,54.494 L3.000,56.994 L26.995,28.500 L3.000,0.006 L-0.000,2.506 L21.995,28.500 Z"/></svg>'],
-            afterInit: owl_keynav,
-            afterAction: owl_update
-        });
+//         // Fullwidth slider fadezoom
+//         $(".fullwidth-slider-fadezoom").owlCarousel({
+//             transitionStyle: "fadeUp",
+//             slideSpeed: 350,
+//             singleItem: true,
+//             autoHeight: true,
+//             navigation: true,
+//             lazyLoad: true,
+//             addClassActive : true,
+//             navigationText: ['<span class="sr-only">Previous Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.005,28.500 L27.000,54.494 L24.000,56.994 L0.005,28.500 L24.000,0.006 L27.000,2.506 L5.005,28.500 Z"/></svg>', '<span class="sr-only">Next Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.995,28.500 L-0.000,54.494 L3.000,56.994 L26.995,28.500 L3.000,0.006 L-0.000,2.506 L21.995,28.500 Z"/></svg>'],
+//             afterInit: owl_keynav,
+//             afterAction: owl_update
+//         });
         
-        // Text slider
-        $(".text-slider").owlCarousel({
-            slideSpeed: 350,
-            singleItem: true,
-            autoHeight: true,
-            navigation: true,
-            lazyLoad: true,
-            addClassActive : true,
-            navigationText: ['<span class="sr-only">Previous Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.005,28.500 L27.000,54.494 L24.000,56.994 L0.005,28.500 L24.000,0.006 L27.000,2.506 L5.005,28.500 Z"/></svg>', '<span class="sr-only">Next Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.995,28.500 L-0.000,54.494 L3.000,56.994 L26.995,28.500 L3.000,0.006 L-0.000,2.506 L21.995,28.500 Z"/></svg>'],
-            afterInit: owl_keynav,
-            afterAction: owl_update
-        });
+//         // Text slider
+//         $(".text-slider").owlCarousel({
+//             slideSpeed: 350,
+//             singleItem: true,
+//             autoHeight: true,
+//             navigation: true,
+//             lazyLoad: true,
+//             addClassActive : true,
+//             navigationText: ['<span class="sr-only">Previous Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.005,28.500 L27.000,54.494 L24.000,56.994 L0.005,28.500 L24.000,0.006 L27.000,2.506 L5.005,28.500 Z"/></svg>', '<span class="sr-only">Next Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.995,28.500 L-0.000,54.494 L3.000,56.994 L26.995,28.500 L3.000,0.006 L-0.000,2.506 L21.995,28.500 Z"/></svg>'],
+//             afterInit: owl_keynav,
+//             afterAction: owl_update
+//         });
         
-        // Fullwidth gallery
-        $(".fullwidth-gallery").addClass("autoplay");
-        $(".fullwidth-gallery").owlCarousel({
-            transitionStyle: "fade",
-            autoPlay: 5000,
-            slideSpeed: 700,
-            singleItem: true,
-            autoHeight: true,
-            navigation: false,
-            pagination: false,
-            lazyLoad: true,
-            addClassActive : true,
-            afterInit: owl_keynav,
-            afterAction: owl_update
-        });
+//         // Fullwidth gallery
+//         $(".fullwidth-gallery").addClass("autoplay");
+//         $(".fullwidth-gallery").owlCarousel({
+//             transitionStyle: "fade",
+//             autoPlay: 5000,
+//             slideSpeed: 700,
+//             singleItem: true,
+//             autoHeight: true,
+//             navigation: false,
+//             pagination: false,
+//             lazyLoad: true,
+//             addClassActive : true,
+//             afterInit: owl_keynav,
+//             afterAction: owl_update
+//         });
         
-        // Item carousel
-        $(".item-carousel").addClass("autoplay");
-        $(".item-carousel").owlCarousel({
-            autoPlay: 3500,
-            stopOnHover: false,
-            items: 3,
-            itemsDesktop: [1199, 3],
-            itemsTabletSmall: [768, 3],
-            itemsMobile: [480, 1],
-            navigation: true,
-            lazyLoad: true,
-            addClassActive : true,
-            navigationText: ['<span class="sr-only">Previous Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.005,28.500 L27.000,54.494 L24.000,56.994 L0.005,28.500 L24.000,0.006 L27.000,2.506 L5.005,28.500 Z"/></svg>', '<span class="sr-only">Next Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.995,28.500 L-0.000,54.494 L3.000,56.994 L26.995,28.500 L3.000,0.006 L-0.000,2.506 L21.995,28.500 Z"/></svg>'],
-            afterInit: owl_keynav,
-            afterAction: owl_update
-        });
+//         // Item carousel
+//         $(".item-carousel").addClass("autoplay");
+//         $(".item-carousel").owlCarousel({
+//             autoPlay: 3500,
+//             stopOnHover: false,
+//             items: 3,
+//             itemsDesktop: [1199, 3],
+//             itemsTabletSmall: [768, 3],
+//             itemsMobile: [480, 1],
+//             navigation: true,
+//             lazyLoad: true,
+//             addClassActive : true,
+//             navigationText: ['<span class="sr-only">Previous Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.005,28.500 L27.000,54.494 L24.000,56.994 L0.005,28.500 L24.000,0.006 L27.000,2.506 L5.005,28.500 Z"/></svg>', '<span class="sr-only">Next Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.995,28.500 L-0.000,54.494 L3.000,56.994 L26.995,28.500 L3.000,0.006 L-0.000,2.506 L21.995,28.500 Z"/></svg>'],
+//             afterInit: owl_keynav,
+//             afterAction: owl_update
+//         });
         
-        // Small item carousel
-        $(".small-item-carousel").addClass("autoplay");
-        $(".small-item-carousel").owlCarousel({
-            autoPlay: 2500,
-            stopOnHover: true,
-            items: 6,
-            itemsDesktop: [1199, 4],
-            itemsTabletSmall: [768, 3],
-            itemsMobile: [480, 2],
-            pagination: false,
-            navigation: true,
-            lazyLoad: true,
-            addClassActive : true,
-            navigationText: ["<span class='sr-only'>Previous Slide</span><i class='fa fa-angle-left' aria-hidden='true'></i>", "<span class='sr-only'>Next Slide</span><i class='fa fa-angle-right' aria-hidden='true'></i>"],
-            afterInit: owl_keynav,
-            afterAction: owl_update
-        });
+//         // Small item carousel
+//         $(".small-item-carousel").addClass("autoplay");
+//         $(".small-item-carousel").owlCarousel({
+//             autoPlay: 2500,
+//             stopOnHover: true,
+//             items: 6,
+//             itemsDesktop: [1199, 4],
+//             itemsTabletSmall: [768, 3],
+//             itemsMobile: [480, 2],
+//             pagination: false,
+//             navigation: true,
+//             lazyLoad: true,
+//             addClassActive : true,
+//             navigationText: ["<span class='sr-only'>Previous Slide</span><i class='fa fa-angle-left' aria-hidden='true'></i>", "<span class='sr-only'>Next Slide</span><i class='fa fa-angle-right' aria-hidden='true'></i>"],
+//             afterInit: owl_keynav,
+//             afterAction: owl_update
+//         });
         
-        // Single carousel
-        $(".single-carousel").owlCarousel({
-            singleItem: true,
-            autoHeight: true,
-            navigation: true,
-            lazyLoad: true,
-            addClassActive : true,
-            navigationText: ["<span class='sr-only'>Previous Slide</span><i class='fa fa-angle-left' aria-hidden='true'></i>", "<span class='sr-only'>Next Slide</span><i class='fa fa-angle-right' aria-hidden='true'></i>"],
-            afterInit: owl_keynav,
-            afterAction: owl_update
-        });
+//         // Single carousel
+//         $(".single-carousel").owlCarousel({
+//             singleItem: true,
+//             autoHeight: true,
+//             navigation: true,
+//             lazyLoad: true,
+//             addClassActive : true,
+//             navigationText: ["<span class='sr-only'>Previous Slide</span><i class='fa fa-angle-left' aria-hidden='true'></i>", "<span class='sr-only'>Next Slide</span><i class='fa fa-angle-right' aria-hidden='true'></i>"],
+//             afterInit: owl_keynav,
+//             afterAction: owl_update
+//         });
         
-        // Content Slider
-        $(".content-slider").owlCarousel({
-            slideSpeed: 350,
-            singleItem: true,
-            autoHeight: true,
-            navigation: true,
-            lazyLoad: true,
-            addClassActive : true,
-            navigationText: ['<span class="sr-only">Previous Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.005,28.500 L27.000,54.494 L24.000,56.994 L0.005,28.500 L24.000,0.006 L27.000,2.506 L5.005,28.500 Z"/></svg>', '<span class="sr-only">Next Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.995,28.500 L-0.000,54.494 L3.000,56.994 L26.995,28.500 L3.000,0.006 L-0.000,2.506 L21.995,28.500 Z"/></svg>'],
-            afterInit: owl_keynav,
-            afterAction: owl_update
-        });
+//         // Content Slider
+//         $(".content-slider").owlCarousel({
+//             slideSpeed: 350,
+//             singleItem: true,
+//             autoHeight: true,
+//             navigation: true,
+//             lazyLoad: true,
+//             addClassActive : true,
+//             navigationText: ['<span class="sr-only">Previous Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.005,28.500 L27.000,54.494 L24.000,56.994 L0.005,28.500 L24.000,0.006 L27.000,2.506 L5.005,28.500 Z"/></svg>', '<span class="sr-only">Next Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.995,28.500 L-0.000,54.494 L3.000,56.994 L26.995,28.500 L3.000,0.006 L-0.000,2.506 L21.995,28.500 Z"/></svg>'],
+//             afterInit: owl_keynav,
+//             afterAction: owl_update
+//         });
 
-        // Photo slider
-        $(".photo-slider").owlCarousel({
-            slideSpeed: 350,
-            items: 4,
-            itemsDesktop: [1199, 4],
-            itemsTabletSmall: [768, 2],
-            itemsMobile: [480, 1],
-            autoHeight: true,
-            navigation: true,
-            lazyLoad: true,
-            addClassActive : true,
-            navigationText: ["<span class='sr-only'>Previous Slide</span><i class='fa fa-angle-left' aria-hidden='true'></i>", "<span class='sr-only'>Next Slide</span><i class='fa fa-angle-right' aria-hidden='true'></i>"],
-            afterInit: owl_keynav,
-            afterAction: owl_update
-        }); 
+//         // Photo slider
+//         $(".photo-slider").owlCarousel({
+//             slideSpeed: 350,
+//             items: 4,
+//             itemsDesktop: [1199, 4],
+//             itemsTabletSmall: [768, 2],
+//             itemsMobile: [480, 1],
+//             autoHeight: true,
+//             navigation: true,
+//             lazyLoad: true,
+//             addClassActive : true,
+//             navigationText: ["<span class='sr-only'>Previous Slide</span><i class='fa fa-angle-left' aria-hidden='true'></i>", "<span class='sr-only'>Next Slide</span><i class='fa fa-angle-right' aria-hidden='true'></i>"],
+//             afterInit: owl_keynav,
+//             afterAction: owl_update
+//         }); 
         
-        // Work slider
-        $(".simple-slider").owlCarousel({
-            slideSpeed : 350,
-            singleItem: true,
-            autoHeight: true,
-            navigation: true,
-            lazyLoad: true,
-            addClassActive : true,
-            navigationText: ['<span class="sr-only">Previous Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.005,28.500 L27.000,54.494 L24.000,56.994 L0.005,28.500 L24.000,0.006 L27.000,2.506 L5.005,28.500 Z"/></svg>', '<span class="sr-only">Next Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.995,28.500 L-0.000,54.494 L3.000,56.994 L26.995,28.500 L3.000,0.006 L-0.000,2.506 L21.995,28.500 Z"/></svg>'],
-            afterInit: owl_keynav,
-            afterAction: owl_update
-        });
+//         // Work slider
+//         $(".simple-slider").owlCarousel({
+//             slideSpeed : 350,
+//             singleItem: true,
+//             autoHeight: true,
+//             navigation: true,
+//             lazyLoad: true,
+//             addClassActive : true,
+//             navigationText: ['<span class="sr-only">Previous Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.005,28.500 L27.000,54.494 L24.000,56.994 L0.005,28.500 L24.000,0.006 L27.000,2.506 L5.005,28.500 Z"/></svg>', '<span class="sr-only">Next Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.995,28.500 L-0.000,54.494 L3.000,56.994 L26.995,28.500 L3.000,0.006 L-0.000,2.506 L21.995,28.500 Z"/></svg>'],
+//             afterInit: owl_keynav,
+//             afterAction: owl_update
+//         });
         
-        // Work slider
-        $(".work-full-slider").owlCarousel({
-            slideSpeed : 350,
-            singleItem: true,
-            autoHeight: true,
-            navigation: true,
-            lazyLoad: true,
-            addClassActive : true,
-            navigationText: ['<span class="sr-only">Previous Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.005,28.500 L27.000,54.494 L24.000,56.994 L0.005,28.500 L24.000,0.006 L27.000,2.506 L5.005,28.500 Z"/></svg>', '<span class="sr-only">Next Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.995,28.500 L-0.000,54.494 L3.000,56.994 L26.995,28.500 L3.000,0.006 L-0.000,2.506 L21.995,28.500 Z"/></svg>'],
-            afterInit: owl_keynav,
-            afterAction: owl_update
-        });      
+//         // Work slider
+//         $(".work-full-slider").owlCarousel({
+//             slideSpeed : 350,
+//             singleItem: true,
+//             autoHeight: true,
+//             navigation: true,
+//             lazyLoad: true,
+//             addClassActive : true,
+//             navigationText: ['<span class="sr-only">Previous Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.005,28.500 L27.000,54.494 L24.000,56.994 L0.005,28.500 L24.000,0.006 L27.000,2.506 L5.005,28.500 Z"/></svg>', '<span class="sr-only">Next Slide</span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27px" height="57px" viewBox="0 0 27 57" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.995,28.500 L-0.000,54.494 L3.000,56.994 L26.995,28.500 L3.000,0.006 L-0.000,2.506 L21.995,28.500 Z"/></svg>'],
+//             afterInit: owl_keynav,
+//             afterAction: owl_update
+//         });      
 
-    })(jQuery);
-};
+//     })(jQuery);
+// };
 
 
 /* ---------------------------------------------
