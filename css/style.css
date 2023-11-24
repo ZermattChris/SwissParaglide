@@ -1,4 +1,19 @@
 @charset "utf-8";
+
+/* My hacky css */
+
+p.itemSubHeading {
+  font-weight:1000 !important; 
+  margin-bottom:0.1em; 
+}
+
+p.itemSubHeading::before {
+  content: "•";
+  padding-right: 0.1em;
+}
+
+
+
 /*------------------------------------------------------------------
 [Master Stylesheet]
 
