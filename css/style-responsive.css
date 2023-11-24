@@ -5,9 +5,14 @@
 /* ==============================
    My Custom stuff.
    ============================== */
+/* Shrink Hero Logo & main text on phone screens */
 @media screen and (max-width: 480px) {
   #SwissParaglideZermattLogo {
-    outline: 1px maroon solid;
+    width: 40%;
+    height: 40%;
+  }
+  #heroH1 {
+    font-size: 1.4em !important;
   }
 }
 
